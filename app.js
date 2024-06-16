@@ -1,10 +1,13 @@
 'use strict'
 const cors = require('cors');
+require("dotenv").config();
 const express = require('express');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
+const DB_URI = process.env.mongoDB_URI;
 const PORT = process.env.PORT || 4001;
 const routes = require('./routes/Clients.js');
+
 
 const router = express.Router();
 const app = express();
@@ -18,7 +21,7 @@ app.use(routes);
 //mongoDB connection
 async function ConnectDB () {
     try {
-        await mongoose.connect('mongodb+srv://jose_cabrera:0sI9x17kq4fbQdRt@cluster0.ndqbdke.mongodb.net/?retryWrites=true&w=majority');
+        await mongoose.connect(DB_URI);
         console.log(`Database Connected Successfully`);
     } catch (error) {
         console.error(error);
