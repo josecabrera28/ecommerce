@@ -1,9 +1,10 @@
 'use strict'
 
-const {registerClient} = require('../controllers/ClientsController');
+const {registerClient, loginClient} = require('../controllers/ClientsController');
 const express = require('express');
 const router = express.Router();
 
-router.get('/registerClient', registerClient);
+router.post('/registerClient', registerClient);
+router.post('/loginClient', loginClient);
 
 module.exports = router;
